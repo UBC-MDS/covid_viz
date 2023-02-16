@@ -9,7 +9,7 @@ In this proposal, we will explore the "Covid-19 World Vaccination Progress" data
 ## Motivation and Purpose
 
 
-Stepping in 2023, Covid-19 is still a heated topic around the world. Despite the availability of vaccines, many parts of the world are still struggling to control the spread of the virus, and new variants continue to emerge. Furthermore, the pandemic has had far-reaching social, economic, and political influences that will continue to be felt for people from all walks of life. Since vaccination is a key strategy in combating the virus, we are interesting in creating a dashboard to monitor the global progress of Covid-19 vaccination efforts and finding the relationship among several indicators to inform public health policy and decision-making. The motivation behind this project is to provide real-time information about the global vaccination progress to researchers, policymakers, and individuals. The dashboard will offer insightful data that can be used to pinpoint areas and nations in need of more funding, encourage openness and accountability in the vaccination drive, and gain a better understanding of how vaccines are affecting the epidemic. 
+Stepping in 2023, Covid-19 is still a heated topic around the world. Despite the availability of vaccines, many parts of the world are still struggling to control the spread of the virus, and new variants continue to emerge. Furthermore, the pandemic has had far-reaching social, economic, and political influences that will continue to be felt for people from all walks of life. Since vaccination is a key strategy in combating the virus, we are interesting in creating a dashboard to monitor the global progress of Covid-19 vaccination efforts and finding the relationship among several indicators to inform public health policy and decision-making. The motivation behind this project is to provide real-time information about the global vaccination progress to researchers, policymakers, and individuals. The dashboard will offer insightful data that can be used to pinpoint areas and nations in need of more funding, encourage openness and accountability in the vaccination drive, and gain a better understanding of how vaccines are affecting the epidemic. Besides, travellers who are interested in assessing their risk of contacting the disease while travelling can access up-to-date information from the dashboard on the number of cases, deaths, and vaccination rates in different countries, and use this information to make informed decisions about their travels.  
 
 
 ## Description of the data
@@ -30,15 +30,16 @@ The dataset contains daily time series data for various COVID-19 related indicat
 
 
 * 1.How does vaccination progress vary by region and country, and what factors contribute to the variation?
-* 2.What is the relationship between the number of vaccines used and the number of people fully vaccinated, and how does this vary by country and vaccine manufacturer?
+* 2.What factors are associated with higher COVID-19 mortality rates in different countries, such as population density or GDP?
 * 3.How has the vaccination progress changed over time, and what are the trends in global vaccination efforts against Covid-19?
-* 4.What is the effect of different vaccine brands on the global range, and which vaccines are being used most widely around the world?
+* 4.What is the relationship between vaccination rates and the number of COVID-19 cases and deaths in different countries?
+* 5.How has the travel stringency index varied over time, and how has this affected the spread of COVID-19 in different countries?
 
 
 For example, policymakers with our application can use the data to evaluate the effectiveness of different interventions, such as banning and accepting certain vaccinations, and make evidence-based decisions about when and how to implement these interventions.
 
 
-Bruce is a concerned citizen who wants to stay informed about the COVID-19 pandemic in his country, he is not fully vaccinated and he wants to know which vaccination is the most effective one in his country. With the assistance of our application, he can immediately find his answer by reading the plot displayed in the dashboard.  
+Emma is a traveller who is planning a business trip to several countries in Europe and wants to know the risk of contacting COVID-19 during her travels. She decides to use the dashboard to help her make informed decisions. From the dashboard, Emma can get an overview of the number of cases, deaths, and vaccination rates globally. This will allow her to see which countries have higher or lower numbers of cases, deaths, and vaccination rates. Besides, the dashboard allows Emma to see whether the global situation is improving or worsening and to identify any patterns or changes over time. Finally, Emma can use the dashboard to plan her travels by identifying countries with lower numbers of cases, deaths, and higher vaccination rates. This will allow her to make informed decisions about where to travel and to take necessary precautions to minimize the risk of contacting COVID-19.
 
 ```R
 
