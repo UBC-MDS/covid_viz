@@ -9,5 +9,5 @@ All contributions are welcomed to this project! If you notice a bug, or have a f
 ### Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to
+Conduct](CONDUCT.md). By participating in this project you agree to
 abide by its terms.
