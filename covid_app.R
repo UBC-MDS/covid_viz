@@ -48,3 +48,37 @@ ui <- shinyUI(fluidPage(
            style="overflow-x: scroll; overflow-y: scroll")
   )
 ))
+
+server <- shinyServer(function(input, output) {
+  
+  thematic::thematic_shiny()
+  
+  output$travelindexPlot <- renderPlot({
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = 20 + 1)
+    
+    hist(x, breaks = bins, col = 'darkgray', border = 'white', main = "Travel Stringency Index")
+  })
+  
+  output$casesPlot <- renderPlot({
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = 20 + 1)
+    
+    hist(x, breaks = bins, col = 'darkgray', border = 'white', main = "Number of Cases")
+  })
+  
+  output$deathPlot <- renderPlot({
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = 20 + 1)
+    
+    hist(x, breaks = bins, col = 'darkgray', border = 'white', main = "Number of Deaths")
+  })
+  
+  output$vaccinePlot <- renderPlot({
+    x    <- faithful[, 2] 
+    bins <- seq(min(x), max(x), length.out = 20 + 1)
+    
+    hist(x, breaks = bins, col = 'darkgray', border = 'white', main = "Number of Vaccinations %")
+  })
+})
+
