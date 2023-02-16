@@ -82,3 +82,4 @@ server <- shinyServer(function(input, output) {
   })
 })
 
+shinyApp(ui = ui, server = server)
