@@ -12,7 +12,6 @@ This R-based dashboard is designed to provide travelers with COVID-19 informatio
 We are aiming to create 3 types of visualizations for within the dashboard. The first type is line graphs showing the progression of COVID-19 cases, deaths and vaccinations percentages according to the filters applied. The second type is a heatmap of the world map showing the travel stringency index of the world which reflects the strictness of government response due to the pandemic. The last type of visualization is number boxes showing the number of COVID-19 cases, deaths and vaccinations percentages according to the filters applied.
 
 <br>
-<br>
 
 <img src="img/dashboard_sketch.png">
 
