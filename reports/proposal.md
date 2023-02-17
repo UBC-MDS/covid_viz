@@ -15,6 +15,7 @@ Stepping in 2023, Covid-19 is still a heated topic around the world. Despite the
 ## Description of the data
 In this project, we are visualizing the COVID-19 dataset that is maintained by [_Our World in Data_](https://ourworldindata.org/coronavirus) which is present in the this [repository](https://github.com/owid/covid-19-data/tree/master/public/data). This dataset contains 59 columns corresponding to COVID-19 statistics such number of `vaccinations`, `confirmed cases`, `deaths`, `hospitalizations`, `reproduction rate`, `government policies in effect`, and other country specific information for over _219 countries_, which provides a comprehensive record of the global vaccination effort against Covid-19. These statistics are being updated constantly hence we restrict ourselves to the data collected from the start of the pandemic to **13-02-2023**. The main aim of the project is to give an overview of the ever changing COVID-19 situation in different countries to avid travelers so that they can arm themselves with the information required to plan their future travels safely. We have selected a subset of metrics of interest for our visualizations:
 
+
 | Variable                         | Description
 |:---------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `location`                   | Geographical location|
@@ -26,6 +27,7 @@ In this project, we are visualizing the COVID-19 dataset that is maintained by [
 | `people_fully_vaccinated`                    | Total number of people who received all doses prescribed by the initial vaccination protocol|
 
 All visualizations, data, and code produced by _Our World in Data_ are completely open access under the [Creative Commons BY license](https://creativecommons.org/licenses/by/4.0/).
+
 
 
 ## Research questions and usage scenarios
@@ -43,6 +45,4 @@ For example, policymakers with our application can use the data to evaluate the 
 
 Emma is a traveller who is planning a business trip to several countries in Europe and wants to know the risk of contacting COVID-19 during her travels. She decides to use the dashboard to help her make informed decisions. From the dashboard, Emma can get an overview of the number of cases, deaths, and vaccination rates globally. This will allow her to see which countries have higher or lower numbers of cases, deaths, and vaccination rates. Besides, the dashboard allows Emma to see whether the global situation is improving or worsening and to identify any patterns or changes over time. Finally, Emma can use the dashboard to plan her travels by identifying countries with lower numbers of cases, deaths, and higher vaccination rates. This will allow her to make informed decisions about where to travel and to take necessary precautions to minimize the risk of contacting COVID-19.
 
-```R
 
-```
