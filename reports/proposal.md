@@ -1,9 +1,14 @@
 # Covid Visulization Proposal
 
 
-Group 12 members: Lennon Au-Yeung, Jenit Jain, Ashwin Babu, Bruce Wu  
+## Authors
+
+- Jenit Jain
+- Ashwin Babu
+- Bruce Wu
+- Lennon Au-Yeung
+
 In this proposal, we will explore the "Covid-19 World Vaccination Progress" dataset that monitors the global progress of Covid-19 vaccination efforts. The proposal will include a discussion of the motivation behind the project, a description of the data, and the research questions that will be explored using the dataset.  
- 
 
 
 ## Motivation and Purpose
