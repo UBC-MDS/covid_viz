@@ -4,7 +4,6 @@ library(leaflet)
 library(jsonlite)
 library(showtext)
 library(readr)
-library(RColorBrewer)
 library(lubridate)
 library(dplyr)
 
@@ -59,7 +58,8 @@ get_color <- function(country,
 
 get_countries <- function(popden, gdp){
   data |> 
-    filter(population_density <= popden & gdp_per_capita <= gdp) |>
+    filter(((population_density <= popden[2] & population_density >= popden[1]) | is.na(population_density)) & 
+             ((gdp_per_capita <= gdp[2] & gdp_per_capita >= gdp[1]) | is.na(gdp_per_capita))) |>
     select(location) |>
     unique() |> pull()
 }
@@ -81,14 +81,16 @@ ui <- shinyUI(fluidPage(
         label = "GDP Slider",
         min = min_gdp,
         max = max_gdp,
-        value = 1000
+        width = '100%',
+        value = c(662, 700)
       ),
       sliderInput(
         inputId = "popdenslider",
         label = "Population Density slider",
         min = min_pop_density,
         max = max_pop_density,
-        value = 1000
+        width = '100%',
+        value = c(662, 700)
       ),
       style = "overflow-x: scroll; overflow-y: scroll"
     ),
