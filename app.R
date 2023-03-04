@@ -6,6 +6,7 @@ library(showtext)
 library(readr)
 library(lubridate)
 library(dplyr)
+library(ggplot2)
 
 my_theme <-
   bslib::bs_theme(bootswatch = "darkly", base_font = font_add_google("Righteous"))
@@ -64,6 +65,68 @@ get_countries <- function(popden, gdp){
     unique() |> pull()
 }
 
+get_cases <- function(country, start_date, end_date, gdp, popden) {
+  filtered_df <- data %>%
+    filter(location == country &
+             date >= ymd(start_date) &
+             date <= ymd(end_date) &
+             (!is.na(gdp_per_capita) & gdp_per_capita >= gdp[1] & gdp_per_capita <= gdp[2]) &
+             (!is.na(population_density) & population_density >= popden[1] & population_density <= popden[2])) %>%
+    group_by(date) %>%
+    summarise(total_cases = sum(total_cases, na.rm = TRUE))
+  
+  return(filtered_df)
+}
+get_deaths <- function(country, start_date, end_date, gdp, popden) {
+  filtered_df <- data %>%
+    filter(location == country &
+             date > ymd(start_date) &
+             date < ymd(end_date) &
+             (gdp_per_capita >= gdp[1] & gdp_per_capita <= gdp[2]) &
+             (population_density >= popden[1] & population_density <= popden[2])) %>%
+    select(date,total_deaths)
+  
+  return(filtered_df)
+}
+
+get_vaccinate_rate <- function(country, start_date, end_date, gdp, popden) {
+  filtered_df <- data %>%
+    filter(location == country &
+             date > ymd(start_date) &
+             date < ymd(end_date) &
+             (gdp_per_capita >= gdp[1] & gdp_per_capita <= gdp[2]) &
+             (population_density >= popden[1] & population_density <= popden[2])) %>%
+    select(people_vaccinated_per_hundred) %>%
+    mutate(people_vaccinated_per_hundred = 
+             if_else(is.na(people_vaccinated_per_hundred) 
+                     | people_vaccinated_per_hundred == 0, 
+                     0, people_vaccinated_per_hundred))
+  
+  return(date,filtered_df)
+}
+
+
+get_vaccination_rate <- function(country, start_date, end_date, gdp, popden) {
+  filtered_df <- data %>%
+    filter(location == country) %>% 
+    filter(date %within% interval(start = ymd(start_date), end = ymd(end_date))) %>%
+    filter((gdp_per_capita >= gdp[1] & gdp_per_capita <= gdp[2]) | is.na(gdp_per_capita)) %>%
+    filter((population_density >= popden[1] & population_density <= popden[2]) | is.na(population_density))
+  
+  total_vaccinations <- sum(filtered_df$total_vaccinations, na.rm = TRUE)
+  population <- max(filtered_df$population, na.rm = TRUE)
+  
+  if (total_vaccinations == 0 | is.na(total_vaccinations)) {
+    vaccination_rate <- 0
+  } else {
+    vaccination_rate <- (total_vaccinations / population) * 100
+  }
+  
+  return(vaccination_rate)
+}
+
+
+
 ui <- shinyUI(fluidPage(
   theme = my_theme,
   titlePanel("Covid-19 Tracker Dashboard"),
@@ -118,6 +181,36 @@ ui <- shinyUI(fluidPage(
 
 server <- function(input, output) {
   thematic::thematic_shiny()
+  
+  filtered_data <- reactive({
+    
+    # Filter data by country dropdown
+    if (input$countrydropdown == "Worldwide") {
+      filtered_df <- data %>%
+        filter(date >= ymd(input$dateslider[1]) &
+                 date <= ymd(input$dateslider[2]) &
+                 (!is.na(gdp_per_capita) & gdp_per_capita >= input$gdpslider[1] & gdp_per_capita <= input$gdpslider[2]) &
+                 (!is.na(population_density) & population_density >= input$popdenslider[1] & population_density <= input$popdenslider[2])) %>%
+        group_by(date) %>%
+        summarise(total_cases = sum(total_cases, na.rm = TRUE),
+                  total_deaths = sum(total_deaths, na.rm = TRUE),
+                  vaccination_rate = ifelse(all(is.na(people_vaccinated_per_hundred)), NA, 
+                                            max(people_vaccinated_per_hundred, na.rm = TRUE)))
+    } else {
+      filtered_df <- data %>%
+        filter(location == input$countrydropdown &
+                 date >= ymd(input$dateslider[1]) &
+                 date <= ymd(input$dateslider[2])) %>%
+        group_by(date) %>%
+        summarise(total_cases = sum(total_cases, na.rm = TRUE),
+                  total_deaths = sum(total_deaths, na.rm = TRUE),
+                  vaccination_rate = ifelse(all(is.na(people_vaccinated_per_hundred)), NA, 
+                                            max(people_vaccinated_per_hundred, na.rm = TRUE)))
+    }
+    
+    return(filtered_df)
+    
+  })
 
   output$travelindexPlot <- renderLeaflet({
     map <- leaflet() |>
@@ -174,43 +267,54 @@ server <- function(input, output) {
     map
   })
   
+ 
+  # Plot filtered cases data
   output$casesPlot <- renderPlot({
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = 20 + 1)
-    
-    hist(
-      x,
-      breaks = bins,
-      col = 'darkgray',
-      border = 'white',
-      main = "Number of Cases"
-    )
+    ggplot(filtered_data(), aes(x=date, y=total_cases)) +
+      geom_line() +
+      ggtitle("Total Confirmed Cases") +
+      xlab("Date") +
+      ylab("Total Cases")+
+      theme_minimal() +
+      theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
+            axis.title.x = element_text(size = 16,color = "white"),
+            axis.title.y = element_text(size = 16),
+            axis.text = element_text(size = 14),
+            legend.title = element_blank(),
+            legend.text = element_text(size = 14))
   })
   
+  # Plot filtered death data
   output$deathPlot <- renderPlot({
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = 20 + 1)
-    
-    hist(
-      x,
-      breaks = bins,
-      col = 'darkgray',
-      border = 'white',
-      main = "Number of Deaths"
-    )
+    ggplot(filtered_data(), aes(x=date, y=total_deaths)) +
+      geom_line() +
+      ggtitle("Total Confirmed Deaths") +
+      xlab("Date") +
+      ylab("Total Deaths")+
+      theme_minimal() +
+      theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
+            axis.title.x = element_text(size = 16,color = "white"),
+            axis.title.y = element_text(size = 16,color = "white"),
+            axis.text = element_text(size = 14),
+            legend.title = element_blank(),
+            legend.text = element_text(size = 14))
   })
+  
+  # Plot filtered Vaccination rate data
   
   output$vaccinePlot <- renderPlot({
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = 20 + 1)
-    
-    hist(
-      x,
-      breaks = bins,
-      col = 'darkgray',
-      border = 'white',
-      main = "Number of Vaccinations %"
-    )
+    ggplot(filtered_data(), aes(x=date, y=vaccination_rate)) +
+      geom_point() +
+      ggtitle("Vaccination rate") +
+      xlab("Date") +
+      ylab("Vaccination rate")+
+      theme_minimal() +
+      theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
+            axis.title.x = element_text(size = 16,color = "white"),
+            axis.title.y = element_text(size = 16,color = "white"),
+            axis.text = element_text(size = 14),
+            legend.title = element_blank(),
+            legend.text = element_text(size = 14))
   })
 }
 
