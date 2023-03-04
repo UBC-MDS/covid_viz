@@ -65,6 +65,15 @@ get_countries <- function(popden, gdp){
     unique() |> pull()
 }
 
+#' get_cases - Get daily COVID-19 cases 
+#' 
+#' @param country The name of the country 
+#' @param start_date The start date of the date range to filter
+#' @param end_date The end date of the date range to filter 
+#' @param gdp A numeric vector of length 2 specifying the range of GDP per capita to filter
+#' @param popden A numeric vector of length 2 specifying the range of population density to filter 
+#' @return A dataframe with the total cases grouped by date
+
 get_cases <- function(country, start_date, end_date, gdp, popden) {
   filtered_df <- data %>%
     filter(location == country &
@@ -77,6 +86,16 @@ get_cases <- function(country, start_date, end_date, gdp, popden) {
   
   return(filtered_df)
 }
+
+#' get_deaths - Get daily COVID-19 deaths 
+#' 
+#' @param country The name of the country 
+#' @param start_date The start date of the date range to filter
+#' @param end_date The end date of the date range to filter 
+#' @param gdp A numeric vector of length 2 specifying the range of GDP per capita to filter
+#' @param popden A numeric vector of length 2 specifying the range of population density to filter 
+#' @return A dataframe with the total deaths grouped by date
+
 get_deaths <- function(country, start_date, end_date, gdp, popden) {
   filtered_df <- data %>%
     filter(location == country &
@@ -88,6 +107,15 @@ get_deaths <- function(country, start_date, end_date, gdp, popden) {
   
   return(filtered_df)
 }
+
+#' get_cases - Get daily COVID-19 vaccination rate 
+#' 
+#' @param country The name of the country 
+#' @param start_date The start date of the date range to filter
+#' @param end_date The end date of the date range to filter 
+#' @param gdp A numeric vector of length 2 specifying the range of GDP per capita to filter
+#' @param popden A numeric vector of length 2 specifying the range of population density to filter 
+#' @return A dataframe with the vaccination rate by date
 
 get_vaccinate_rate <- function(country, start_date, end_date, gdp, popden) {
   filtered_df <- data %>%
@@ -106,24 +134,6 @@ get_vaccinate_rate <- function(country, start_date, end_date, gdp, popden) {
 }
 
 
-get_vaccination_rate <- function(country, start_date, end_date, gdp, popden) {
-  filtered_df <- data %>%
-    filter(location == country) %>% 
-    filter(date %within% interval(start = ymd(start_date), end = ymd(end_date))) %>%
-    filter((gdp_per_capita >= gdp[1] & gdp_per_capita <= gdp[2]) | is.na(gdp_per_capita)) %>%
-    filter((population_density >= popden[1] & population_density <= popden[2]) | is.na(population_density))
-  
-  total_vaccinations <- sum(filtered_df$total_vaccinations, na.rm = TRUE)
-  population <- max(filtered_df$population, na.rm = TRUE)
-  
-  if (total_vaccinations == 0 | is.na(total_vaccinations)) {
-    vaccination_rate <- 0
-  } else {
-    vaccination_rate <- (total_vaccinations / population) * 100
-  }
-  
-  return(vaccination_rate)
-}
 
 
 
@@ -189,13 +199,12 @@ server <- function(input, output) {
       filtered_df <- data %>%
         filter(date >= ymd(input$dateslider[1]) &
                  date <= ymd(input$dateslider[2]) &
-                 (!is.na(gdp_per_capita) & gdp_per_capita >= input$gdpslider[1] & gdp_per_capita <= input$gdpslider[2]) &
-                 (!is.na(population_density) & population_density >= input$popdenslider[1] & population_density <= input$popdenslider[2])) %>%
+                 (!is.na(gdp_per_capita) & (gdp_per_capita >= input$gdpslider[1] & gdp_per_capita <= input$gdpslider[2])) &
+                 (!is.na(population_density) & (population_density >= input$popdenslider[1] & population_density <= input$popdenslider[2]))) %>%
         group_by(date) %>%
         summarise(total_cases = sum(total_cases, na.rm = TRUE),
                   total_deaths = sum(total_deaths, na.rm = TRUE),
-                  vaccination_rate = sum(people_vaccinated * population, na.rm = TRUE) 
-                                     / sum(population, na.rm = TRUE) / 100)
+                  vaccination_rate = unique(weighted.mean(people_vaccinated_per_hundred, population, na.rm = TRUE)))
     } else {
       filtered_df <- data %>%
         filter(location == input$countrydropdown &
@@ -304,7 +313,7 @@ server <- function(input, output) {
   
   output$vaccinePlot <- renderPlot({
     ggplot(filtered_data(), aes(x=date, y=vaccination_rate)) +
-      geom_point() +
+      geom_line() +
       ggtitle("Vaccination rate") +
       xlab("Date") +
       ylab("Vaccination rate")+
