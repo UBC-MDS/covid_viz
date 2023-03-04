@@ -51,9 +51,9 @@ get_color <- function(country,
                       start_date,
                       end_date) {
   filtered_df <- data |>
-                  filter(location == country) |> 
-                  filter(date %within% interval(start = ymd(start_date), end = ymd(end_date))) |> 
-                  filter(!is.na(stringency_index))
+    filter(location == country) |> 
+    filter(date %within% interval(start = ymd(start_date), end = ymd(end_date))) |> 
+    filter(!is.na(stringency_index))
   
   if(nrow(filtered_df) == 0){
     value <- 0
@@ -211,8 +211,8 @@ server <- function(input, output) {
         group_by(date) %>%
         summarise(total_cases = sum(total_cases, na.rm = TRUE),
                   total_deaths = sum(total_deaths, na.rm = TRUE),
-                  vaccination_rate = ifelse(all(is.na(people_vaccinated_per_hundred)), NA, 
-                                            max(people_vaccinated_per_hundred, na.rm = TRUE)))
+                  vaccination_rate = sum(people_vaccinated * population, na.rm = TRUE) 
+                                     / sum(population, na.rm = TRUE) / 100)
     } else {
       filtered_df <- data %>%
         filter(location == input$countrydropdown &
@@ -228,7 +228,7 @@ server <- function(input, output) {
     return(filtered_df)
     
   })
-
+  
   output$travelindexPlot <- renderLeaflet({
     map <- leaflet() |>
       setView(lng = 0,
@@ -284,7 +284,7 @@ server <- function(input, output) {
     map
   })
   
- 
+  
   # Plot filtered cases data
   output$casesPlot <- renderPlot({
     ggplot(filtered_data(), aes(x=date, y=total_cases)) +
@@ -336,3 +336,4 @@ server <- function(input, output) {
 }
 
 shinyApp(ui = ui, server = server)
+
