@@ -159,7 +159,7 @@ ui <- shinyUI(fluidPage(
     ),
     column(
       6,
-      leaflet::leafletOutput("travelindexPlot", height = "550px"),
+      leaflet::leafletOutput("travelindexPlot", height = "650px"),
       sliderInput(
         inputId = "dateslider",
         label = "Date Slider",
@@ -171,10 +171,10 @@ ui <- shinyUI(fluidPage(
     ),
     column(
       4,
-      plotOutput("casesPlot", width = "100%"),
-      plotOutput("deathPlot"),
-      plotOutput("vaccinePlot"),
-      style = "overflow-x: scroll; overflow-y: scroll"
+      plotOutput("casesPlot", width = "100%", height="300px"),
+      plotOutput("deathPlot", height="300px"),
+      plotOutput("vaccinePlot", height="300px"),
+      # style = "overflow-x: scroll; overflow-y: scroll"
     )
   )
 ))
@@ -276,10 +276,10 @@ server <- function(input, output) {
       xlab("Date") +
       ylab("Total Cases")+
       theme_minimal() +
-      theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
+      theme(plot.title = element_text(size = 20, hjust = 0.5, color = "white"),
             axis.title.x = element_text(size = 16,color = "white"),
-            axis.title.y = element_text(size = 16),
-            axis.text = element_text(size = 14),
+            axis.title.y = element_text(size = 16, color = "white"),
+            axis.text = element_text(size = 14, color = "white"),
             legend.title = element_blank(),
             legend.text = element_text(size = 14))
   })
@@ -295,7 +295,7 @@ server <- function(input, output) {
       theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
             axis.title.x = element_text(size = 16,color = "white"),
             axis.title.y = element_text(size = 16,color = "white"),
-            axis.text = element_text(size = 14),
+            axis.text = element_text(size = 14, color = "white"),
             legend.title = element_blank(),
             legend.text = element_text(size = 14))
   })
@@ -312,7 +312,7 @@ server <- function(input, output) {
       theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
             axis.title.x = element_text(size = 16,color = "white"),
             axis.title.y = element_text(size = 16,color = "white"),
-            axis.text = element_text(size = 14),
+            axis.text = element_text(size = 14, color = "white"),
             legend.title = element_blank(),
             legend.text = element_text(size = 14))
   })
