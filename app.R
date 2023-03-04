@@ -11,8 +11,10 @@ library(ggplot2)
 my_theme <-
   bslib::bs_theme(bootswatch = "darkly", base_font = font_add_google("Righteous"))
 thematic::thematic_shiny(font = "auto")
+#Reading covid data and setting it as a global variable to access it inside all functions
 data <- readr::read_csv("data/raw/owid-covid-data.csv")
 data$date <- ymd(data$date)
+#Reading GeoJSON data to get country boundaries
 geojson <-
   readLines(
     "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson",
@@ -36,6 +38,15 @@ min_pop_density <- min(data$population_density, na.rm = TRUE)
 min_date <- min(data$date)
 max_date <- max(data$date)
 
+#' Get color corresponding to stringency index
+#'
+#' @param country Name of the country.
+#' @param start_date Start Date of the interval.
+#' @param end_date End Date of the interval.
+#'
+#' @return Return the color that corresponds to the stringency index at end_data.
+#'         Very Stringent Country: Red
+#'         Very Lenient Country: Green
 get_color <- function(country,
                       start_date,
                       end_date) {
@@ -57,10 +68,16 @@ get_color <- function(country,
 }
 
 
+#' Get a list of countries
+#'
+#' @param popden The range of Population density
+#' @param gdp The range of GDP per capita
+#'
+#' @return A unique list of countries whose population density and GDP lie in the above range
 get_countries <- function(popden, gdp){
   data |> 
-    filter(((population_density <= popden[2] & population_density >= popden[1]) | is.na(population_density)) & 
-             ((gdp_per_capita <= gdp[2] & gdp_per_capita >= gdp[1]) | is.na(gdp_per_capita))) |>
+    filter(((population_density <= popden[2] & population_density >= popden[1]) & !is.na(population_density)) & 
+             ((gdp_per_capita <= gdp[2] & gdp_per_capita >= gdp[1]) & !is.na(gdp_per_capita))) |>
     select(location) |>
     unique() |> pull()
 }
