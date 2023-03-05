@@ -52,11 +52,13 @@ If you would like to contribute to our project, please read the CONTRIBUTING.md 
 
 -   Click "Run App"
 
-*To propose new changes:* - Make your changes to the code in Rstudio 
+*To propose new changes:* 
+- Make your changes to the code in Rstudio 
 - Commit your changes (with an informative commit message) 
 - Push your changes to your fork - Submit a pull request
 
-**Places for improvement** - Build upon the current map plot and add interactive elements to the plot. 
+**Places for improvement** 
+- Build upon the current map plot and add interactive elements to the plot. 
 - Help in accumulating the missing data on country level and add text box widget for the cases, vaccination percentage and deaths according to the user selection.
 
 ## Contributing 
