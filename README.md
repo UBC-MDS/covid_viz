@@ -63,10 +63,10 @@ changes to your fork - Submit a pull request
 Help in accumulating the missing data on country level and add text box widget for the cases, vaccination percentage and deaths according to the user selection.
 
 
-## Contributing{#contributing}
+## Contributing {#contributing}
 
 Interested in contributing? Check out the [contributing guidelines](CONTRIBUTING.md). Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
-# License{#license}
+## License {#license}
 
 `covid_viz` was created by Jenit Jain, Ashwin Babu, Bruce Wu and Lennon Au-Yeung. It is licensed under the terms of the [MIT license](LICENSE).
