@@ -1,4 +1,5 @@
 # COVID Visualization Dashboard
+The dashboard is hosted on `shinyapps.io`, please click the link [here](https://jenitj61.shinyapps.io/covid_viz/)
 
 ## Authors
 
