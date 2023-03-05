@@ -23,7 +23,10 @@ This R-based dashboard is designed to provide travelers with COVID-19 informatio
 
 We are aiming to create 3 types of visualizations for within the dashboard. The first type is line graphs showing the progression of COVID-19 cases, deaths and vaccinations percentages according to the filters applied. The second type is a heatmap of the world map showing the travel stringency index of the world which reflects the strictness of government response due to the pandemic. The last type of visualization is number boxes showing the number of COVID-19 cases, deaths and vaccinations percentages according to the filters applied.
 
-*The brief questions answered by this dashboard would be:* - As a traveler one would want to know the current COVID stringency situation at the destination country. - Study the impact of COVID on different countries based on GDP and population density. - Study a particular country based on timeline to see how it was impacted over the months due to COVID.
+*The brief questions answered by this dashboard would be:* 
+- As a traveler one would want to know the current COVID stringency situation at the destination country. 
+- Study the impact of COVID on different countries based on GDP and population density. 
+- Study a particular country based on timeline to see how it was impacted over the months due to COVID.
 
 <br>
 
@@ -35,19 +38,26 @@ We are aiming to create 3 types of visualizations for within the dashboard. The 
 
 **How to run the app locally and make contributions**
 
-If you would like to contribute to our project, please read the CONTRIBUTING.md file and then follow these steps: - Ensure that you have R and Rstudio installed on your computer - Fork our repository and [clone](https://github.com/UBC-MDS/covid_viz.git) it onto your computer - Create a new branch (named according to the specifications in the CONTRIBUTING.md file)
+If you would like to contribute to our project, please read the CONTRIBUTING.md file and then follow these steps: 
+- Ensure that you have R and Rstudio installed on your computer 
+- Fork our repository and [clone](https://github.com/UBC-MDS/covid_viz.git) it onto your computer 
+- Create a new branch (named according to the specifications in the CONTRIBUTING.md file)
 
-*To run the app locally:* - Open the project (i.e., the app.R file) in Rstudio
+*To run the app locally:* 
+- Open the project (i.e., the app.R file) in Rstudio
 
--   Ensure all the necessary packages are installed
+- Ensure all the necessary packages are installed
 
     install.packages(c("shiny", "bslib", "shinythemes", "shinydashboard", "ggplot2", "leaflet", "jsonlite", "thematic", "showtext", "readr", "lubridate", "dplyr"))
 
 -   Click "Run App"
 
-*To propose new changes:* - Make your changes to the code in Rstudio - Commit your changes (with an informative commit message) - Push your changes to your fork - Submit a pull request
+*To propose new changes:* - Make your changes to the code in Rstudio 
+- Commit your changes (with an informative commit message) 
+- Push your changes to your fork - Submit a pull request
 
-**Places for improvement** - Build upon the current map plot and add interactive elements to the plot. - Help in accumulating the missing data on country level and add text box widget for the cases, vaccination percentage and deaths according to the user selection.
+**Places for improvement** - Build upon the current map plot and add interactive elements to the plot. 
+- Help in accumulating the missing data on country level and add text box widget for the cases, vaccination percentage and deaths according to the user selection.
 
 ## Contributing 
 
