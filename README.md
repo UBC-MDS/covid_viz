@@ -34,6 +34,10 @@ We are aiming to create 3 types of visualizations for within the dashboard. The 
 
 <img src="img/dashboard_sketch.png"/>
 
+# Dashboard Demo
+
+![](img/ezgif.com-video-to-gif.gif)
+
 ## Get involved 
 
 **How to run the app locally and make contributions**
