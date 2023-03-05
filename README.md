@@ -12,12 +12,12 @@ The dashboard is hosted on `shinyapps.io`, please click the link [here](https://
 
 Thank you for visiting our repository! This document (README.md) will have all the general information you need to know about our dashboard. You can either scroll down or click from the links below to jump to a specific section:
 
--   [Overview](#overview)
--   [Project Motivation](#project-motivation)
--   [Dashboard Sketch](#dashboard-sketch)
--   [Getting Involved](#get-involved)
--   [Contributing](#contributing)
--   [License](#license)
+* [Overview](#overview)
+* [Project Motivation](#project-motivation)
+* [Dashboard Sketch](#dashboard-sketch)
+* [Getting Involved](#get-involved)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Overview {#overview}
 
