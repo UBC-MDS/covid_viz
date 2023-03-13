@@ -1,5 +1,8 @@
 # COVID Visualization Dashboard
 
+[![shiny-deploy](https://github.com/UBC-MDS/covid_viz/actions/workflows/deploy-app.yaml/badge.svg)](https://github.com/UBC-MDS/covid_viz/actions/workflows/deploy-app.yaml) [![Test app w/ {renv}](https://github.com/UBC-MDS/covid_viz/actions/workflows/testing.yaml/badge.svg)](https://github.com/UBC-MDS/covid_viz/actions/workflows/testing.yaml)
+
+
 The dashboard is hosted on `shinyapps.io`, please click the link [here](https://jenitj61.shinyapps.io/covid_viz/)
 
 ## Authors
