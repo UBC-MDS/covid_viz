@@ -160,7 +160,7 @@ ui <- shinyUI(fluidPage(
   
   fluidRow(
     column(
-      2,
+      3,
       selectInput(
         inputId = "countrydropdown",
         label = "Country Dropdown",
@@ -171,7 +171,7 @@ ui <- shinyUI(fluidPage(
         label = "GDP Slider",
         min = min_gdp,
         max = max_gdp,
-        width = '100%',
+        width = '90%',
         value = c(662, 700)
       ),
       sliderInput(
@@ -179,13 +179,13 @@ ui <- shinyUI(fluidPage(
         label = "Population Density slider",
         min = min_pop_density,
         max = max_pop_density,
-        width = '100%',
+        width = '90%',
         value = c(662, 700)
       ),
       style = "overflow-x: scroll; overflow-y: scroll"
     ),
     column(
-      6,
+      5,
       leaflet::leafletOutput("travelindexPlot", height = "650px"),
       sliderInput(
         inputId = "dateslider",
