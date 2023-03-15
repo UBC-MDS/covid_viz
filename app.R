@@ -31,7 +31,8 @@ for (feature_num in seq(length(geojson[[2]]))) {
 
 colors <- colorBin("RdYlGn", 
                    domain = list(0,100), 
-                   bins = seq(0,100,10))
+                   bins = seq(0,100,10),
+                   reverse = TRUE)
 min_gdp <- min(data$gdp_per_capita, na.rm = TRUE)
 max_gdp <- max(data$gdp_per_capita, na.rm = TRUE)
 max_pop_density <- max(data$population_density, na.rm = TRUE)
@@ -65,7 +66,7 @@ get_color <- function(country,
       value <- 0
     }
   }
-  colors(100-value)
+  colors(value)
 }
 
 
@@ -264,7 +265,7 @@ server <- function(input, output) {
         opacity = 0.8,
         fillOpacity = 0.8
       )
-      map <- map |> addGeoJSON(geojson = country_json) 
+      map <- map |> addGeoJSON(geojson = country_json)
     }
     else{
       filtered_countries <- get_countries(input$popdenslider, input$gdpslider)
@@ -286,12 +287,16 @@ server <- function(input, output) {
               fillOpacity = 0.8
             )
             map <- map |> addGeoJSON(geojson = country_json)
-            break
           }
         }
       }
     }
-    map
+    map |>
+      addLegend(pal = colors, 
+                values = c(0,100), 
+                opacity = 1.0, 
+                title = "Stringency Index")
+    
   })
   
   
