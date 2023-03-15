@@ -7,6 +7,7 @@ library(readr)
 library(lubridate)
 library(dplyr)
 library(ggplot2)
+library(curl)
 
 my_theme <-
   bslib::bs_theme(bootswatch = "darkly", base_font = font_add_google("Righteous"))
@@ -172,7 +173,7 @@ ui <- shinyUI(fluidPage(
         min = min_gdp,
         max = max_gdp,
         width = '90%',
-        value = c(662, 700)
+        value = c(662, 2600)
       ),
       sliderInput(
         inputId = "popdenslider",
@@ -180,7 +181,7 @@ ui <- shinyUI(fluidPage(
         min = min_pop_density,
         max = max_pop_density,
         width = '90%',
-        value = c(662, 700)
+        value = c(200, 1000)
       ),
       style = "overflow-x: scroll; overflow-y: scroll"
     ),
