@@ -187,7 +187,8 @@ ui <- shinyUI(fluidPage(
     ),
     column(
       5,
-      leaflet::leafletOutput("travelindexPlot", height = "650px"),
+      shinycssloaders::withSpinner(
+      leaflet::leafletOutput("travelindexPlot", height = "650px")),
       sliderInput(
         inputId = "dateslider",
         label = "Date Slider",
@@ -199,9 +200,9 @@ ui <- shinyUI(fluidPage(
     ),
     column(
       4,
-      plotOutput("casesPlot", width = "100%", height="300px"),
-      plotOutput("deathPlot", height="300px"),
-      plotOutput("vaccinePlot", height="300px"),
+      shinycssloaders::withSpinner(plotOutput("casesPlot", width = "100%", height="300px")),
+      shinycssloaders::withSpinner(plotOutput("deathPlot", height="300px")),
+      shinycssloaders::withSpinner(plotOutput("vaccinePlot", height="300px")),
       # style = "overflow-x: scroll; overflow-y: scroll"
     )
   )
