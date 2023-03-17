@@ -1,14 +1,16 @@
-library(shiny)
-library(shinythemes)
-library(leaflet)
-library(jsonlite)
-library(showtext)
-library(readr)
-library(lubridate)
-library(dplyr)
-library(ggplot2)
-library(curl)
-
+suppressPackageStartupMessages({
+  library(shiny)
+  library(shinythemes)
+  library(leaflet)
+  library(jsonlite)
+  library(showtext)
+  library(readr)
+  library(lubridate)
+  library(dplyr)
+  library(ggplot2)
+  library(curl)
+  })
+  
 my_theme <-
   bslib::bs_theme(bootswatch = "darkly", base_font = font_add_google("Righteous"))
 thematic::thematic_shiny(font = "auto")
