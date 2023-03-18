@@ -27,8 +27,8 @@
   },
   "output": {
     "casesPlot": {
-      "src": "[image data hash: e4338480a7f9113e40d348ed1f85b8eb]",
-      "width": 506.984375,
+      "src": "[image data hash: 6460b43c1031daaa59205a14437f5e8b]",
+      "width": 511,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -56,22 +56,22 @@
               "x": "date"
             },
             "range": {
-              "left": 77.1506696843359,
-              "right": 500.520449028101,
-              "bottom": 256.849229452055,
-              "top": 30.9588937899543
+              "left": 77.1506849315069,
+              "right": 505.520547945205,
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
         "dims": {
-          "width": 506.984375,
+          "width": 511,
           "height": 300
         }
       }
     },
     "deathPlot": {
-      "src": "[image data hash: b00a4f9a3a0f509d75aa043ace7b3129]",
-      "width": 506.984375,
+      "src": "[image data hash: 08ab3b032b896002b8b76e41e9a533dc]",
+      "width": 511,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -99,15 +99,15 @@
               "x": "date"
             },
             "range": {
-              "left": 61.1506728463913,
-              "right": 500.520449028101,
-              "bottom": 256.849229452055,
-              "top": 30.9588937899543
+              "left": 61.1506849315069,
+              "right": 505.520547945205,
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
         "dims": {
-          "width": 506.984375,
+          "width": 511,
           "height": 300
         }
       }
@@ -6396,7 +6396,7 @@
     },
     "vaccinePlot": {
       "src": "[image data hash: bd9359991d1f3326e68c38e410258eea]",
-      "width": 506.984375,
+      "width": 511,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
