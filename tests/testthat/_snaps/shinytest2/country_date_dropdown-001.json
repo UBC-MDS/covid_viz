@@ -15,9 +15,9 @@
     ],
     "travelindexPlot_bounds": {
       "north": 74.4964131169431,
-      "east": 113.203125,
+      "east": 112.5,
       "south": -74.4964131169431,
-      "west": -113.203125
+      "west": -112.5
     },
     "travelindexPlot_center": {
       "lng": 0,
@@ -27,8 +27,8 @@
   },
   "output": {
     "casesPlot": {
-      "src": "[image data hash: 9ccfc5626cea4153d73239f6165b1203]",
-      "width": 511,
+      "src": "[image data hash: e4338480a7f9113e40d348ed1f85b8eb]",
+      "width": 506.984375,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -51,26 +51,27 @@
               "top": 151064.3
             },
             "mapping": {
-              "x": "date",
-              "y": "total_cases"
+              "y": "total_cases",
+              "colour": "\"Daily Cases\"",
+              "x": "date"
             },
             "range": {
-              "left": 77.1506849315069,
-              "right": 505.520547945205,
-              "bottom": 255.849315068493,
-              "top": 30.958904109589
+              "left": 77.1506696843359,
+              "right": 500.520449028101,
+              "bottom": 256.849229452055,
+              "top": 30.9588937899543
             }
           }
         ],
         "dims": {
-          "width": 511,
+          "width": 506.984375,
           "height": 300
         }
       }
     },
     "deathPlot": {
-      "src": "[image data hash: 3940d14c7c6aaea3dd2992942dbc3fe0]",
-      "width": 511,
+      "src": "[image data hash: b00a4f9a3a0f509d75aa043ace7b3129]",
+      "width": 506.984375,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -93,19 +94,20 @@
               "top": 6746.25
             },
             "mapping": {
-              "x": "date",
-              "y": "total_deaths"
+              "y": "total_deaths",
+              "colour": "\"Daily Deaths\"",
+              "x": "date"
             },
             "range": {
-              "left": 61.1506849315069,
-              "right": 505.520547945205,
-              "bottom": 255.849315068493,
-              "top": 30.958904109589
+              "left": 61.1506728463913,
+              "right": 500.520449028101,
+              "bottom": 256.849229452055,
+              "top": 30.9588937899543
             }
           }
         ],
         "dims": {
-          "width": 511,
+          "width": 506.984375,
           "height": 300
         }
       }
@@ -6393,8 +6395,8 @@
       ]
     },
     "vaccinePlot": {
-      "src": "[image data hash: bd9359991d1f3326e68c38e410258eea]",
-      "width": 511,
+      "src": "[image data hash: a7bf479a8e64fb10f4fd942548f95ddd]",
+      "width": 506.984375,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -6421,15 +6423,15 @@
               "y": "vaccination_rate"
             },
             "range": {
-              "left": 49.1506849315069,
-              "right": 505.520547945205,
-              "bottom": 255.849315068493,
-              "top": 30.958904109589
+              "left": 49.1506752179328,
+              "right": 500.520449028101,
+              "bottom": 256.849229452055,
+              "top": 30.9588937899543
             }
           }
         ],
         "dims": {
-          "width": 511,
+          "width": 506.984375,
           "height": 300
         }
       }
