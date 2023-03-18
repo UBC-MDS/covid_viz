@@ -26,3 +26,25 @@ test_that("{shinytest2} recording: covid_viz_test_1", {
   app$set_inputs(popdenslider = c(0.137, 1000))
   app$expect_values()
 })
+
+
+
+test_that("{shinytest2} recording: argentina", {
+  app <- AppDriver$new(variant = platform_variant(), name = "argentina", height = 963, 
+      width = 1407)
+  app$set_inputs(countrydropdown = "Argentina")
+  app$set_inputs(dateslider = c("2020-12-20", "2023-02-12"))
+  app$expect_screenshot()
+})
+
+
+
+test_that("{shinytest2} recording: covid_viz", {
+  app <- AppDriver$new(variant = platform_variant(), name = "covid_viz", height = 963, 
+      width = 1407)
+  app$set_inputs(gdpslider = c(662, 74661))
+  app$set_inputs(popdenslider = c(200, 15400))
+  app$set_inputs(dateslider = c("2021-07-30", "2023-02-12"))
+  app$expect_screenshot()
+})
+

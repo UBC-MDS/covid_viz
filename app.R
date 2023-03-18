@@ -206,6 +206,7 @@ ui <- shinyUI(fluidPage(
       shinycssloaders::withSpinner(plotOutput("casesPlot", width = "100%", height="300px")),
       shinycssloaders::withSpinner(plotOutput("deathPlot", height="300px")),
       shinycssloaders::withSpinner(plotOutput("vaccinePlot", height="300px")),
+      downloadButton("downloadData", "Download Data"),
       # style = "overflow-x: scroll; overflow-y: scroll"
     )
   )
@@ -305,8 +306,12 @@ server <- function(input, output) {
   
   # Plot filtered cases data
   output$casesPlot <- renderPlot({
-    ggplot(filtered_data(), aes(x=date, y=total_cases)) +
-      geom_line() +
+    data <- filtered_data()
+    data$rolling_avg <- zoo::rollmean(data$total_cases, k = 120, fill = NA, align = "right")
+    # add a rolling mean quarterly to the plot
+    ggplot(data, aes(x=date)) +
+      geom_line(aes(y=total_cases, color="Daily Cases")) +
+      geom_line(aes(y=rolling_avg, color="Rolling Mean"), size=1.5) +
       ggtitle("Total Confirmed Cases") +
       xlab("Date") +
       ylab("Total Cases")+
@@ -316,23 +321,35 @@ server <- function(input, output) {
             axis.title.y = element_text(size = 16, color = "white"),
             axis.text = element_text(size = 14, color = "white"),
             legend.title = element_blank(),
-            legend.text = element_text(size = 14))
+            legend.text = element_text(size = 8,color="white"),
+            legend.position = c(0.9, 0.85),
+            legend.background = element_rect(fill = "transparent", color = NA),
+            legend.box.background = element_rect(fill = "transparent", color = NA),
+            legend.direction = "vertical")
   })
   
   # Plot filtered death data
   output$deathPlot <- renderPlot({
-    ggplot(filtered_data(), aes(x=date, y=total_deaths)) +
-      geom_line() +
+    data <- filtered_data()
+    data$rolling_mean <- zoo::rollmean(data$total_deaths, 120, na.pad = TRUE)
+    # add a rolling mean quarterly to the plot
+    ggplot(data, aes(x = date)) +
+      geom_line(aes(y=total_deaths, color="Daily Deaths")) +
+      geom_line(aes(y=rolling_mean, color="Rolling Mean"), size=1.5) +
       ggtitle("Total Confirmed Deaths") +
       xlab("Date") +
-      ylab("Total Deaths")+
+      ylab("Total Deaths") +
       theme_minimal() +
-      theme(plot.title = element_text(size = 20, hjust = 0.5,color = "white"),
+      theme(plot.title = element_text(size = 20, hjust = 0.5, color = "white"),
             axis.title.x = element_text(size = 16,color = "white"),
-            axis.title.y = element_text(size = 16,color = "white"),
+            axis.title.y = element_text(size = 16, color = "white"),
             axis.text = element_text(size = 14, color = "white"),
             legend.title = element_blank(),
-            legend.text = element_text(size = 14))
+            legend.text = element_text(size = 8,color="white"),
+            legend.position = c(0.9, 0.85),
+            legend.background = element_rect(fill = "transparent", color = NA),
+            legend.box.background = element_rect(fill = "transparent", color = NA),
+            legend.direction = "vertical")
   })
   
   # Plot filtered Vaccination rate data
@@ -351,6 +368,15 @@ server <- function(input, output) {
             legend.title = element_blank(),
             legend.text = element_text(size = 14))
   })
+  # Add download button
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("filtered_data_", Sys.Date(), ".csv", sep="")
+    },
+    content = function(file) {
+      write.csv(filtered_data(), file, row.names=FALSE)
+    }
+  )
 }
 
 shinyApp(ui = ui, server = server)
