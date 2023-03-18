@@ -27,7 +27,7 @@
   },
   "output": {
     "casesPlot": {
-      "src": "[image data hash: 1bd96112304986f33d989b9979fbfd7b]",
+      "src": "[image data hash: 9ccfc5626cea4153d73239f6165b1203]",
       "width": 511,
       "height": 300,
       "alt": "Plot object",
@@ -55,10 +55,10 @@
               "y": "total_cases"
             },
             "range": {
-              "left": 74.8381849315069,
+              "left": 77.1506849315069,
               "right": 505.520547945205,
-              "bottom": 258.849315068493,
-              "top": 29.958904109589
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
@@ -69,7 +69,7 @@
       }
     },
     "deathPlot": {
-      "src": "[image data hash: 91dcfdda3de50e3a0a1a172cf64810bc]",
+      "src": "[image data hash: 3940d14c7c6aaea3dd2992942dbc3fe0]",
       "width": 511,
       "height": 300,
       "alt": "Plot object",
@@ -97,10 +97,10 @@
               "y": "total_deaths"
             },
             "range": {
-              "left": 59.2756849315069,
+              "left": 61.1506849315069,
               "right": 505.520547945205,
-              "bottom": 258.849315068493,
-              "top": 29.958904109589
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
@@ -6393,7 +6393,7 @@
       ]
     },
     "vaccinePlot": {
-      "src": "[image data hash: 134d5a129190d37de65a580b6ddc9c5e]",
+      "src": "[image data hash: bd9359991d1f3326e68c38e410258eea]",
       "width": 511,
       "height": 300,
       "alt": "Plot object",
@@ -6421,10 +6421,10 @@
               "y": "vaccination_rate"
             },
             "range": {
-              "left": 47.6038099315069,
+              "left": 49.1506849315069,
               "right": 505.520547945205,
-              "bottom": 258.849315068493,
-              "top": 29.958904109589
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
