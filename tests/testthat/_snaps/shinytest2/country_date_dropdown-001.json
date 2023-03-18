@@ -15,9 +15,9 @@
     ],
     "travelindexPlot_bounds": {
       "north": 74.4964131169431,
-      "east": 112.5,
+      "east": 113.203125,
       "south": -74.4964131169431,
-      "west": -112.5
+      "west": -113.203125
     },
     "travelindexPlot_center": {
       "lng": 0,
@@ -6395,7 +6395,7 @@
       ]
     },
     "vaccinePlot": {
-      "src": "[image data hash: a7bf479a8e64fb10f4fd942548f95ddd]",
+      "src": "[image data hash: bd9359991d1f3326e68c38e410258eea]",
       "width": 506.984375,
       "height": 300,
       "alt": "Plot object",
@@ -6423,15 +6423,15 @@
               "y": "vaccination_rate"
             },
             "range": {
-              "left": 49.1506752179328,
-              "right": 500.520449028101,
-              "bottom": 256.849229452055,
-              "top": 30.9588937899543
+              "left": 49.1506849315069,
+              "right": 505.520547945205,
+              "bottom": 255.849315068493,
+              "top": 30.958904109589
             }
           }
         ],
         "dims": {
-          "width": 506.984375,
+          "width": 511,
           "height": 300
         }
       }
