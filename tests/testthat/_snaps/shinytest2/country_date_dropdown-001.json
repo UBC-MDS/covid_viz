@@ -28,7 +28,7 @@
   "output": {
     "casesPlot": {
       "src": "[image data hash: 6460b43c1031daaa59205a14437f5e8b]",
-      "width": 506.984375,
+      "width": 511,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
@@ -71,7 +71,7 @@
     },
     "deathPlot": {
       "src": "[image data hash: 08ab3b032b896002b8b76e41e9a533dc]",
-      "width": 506.984375,
+      "width": 511,
       "height": 300,
       "alt": "Plot object",
       "coordmap": {
