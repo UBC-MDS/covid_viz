@@ -20,3 +20,9 @@ test_that("{shinytest2} recording: GDP_slider", {
   app$set_inputs(gdpslider = c(662, 55661))
   app$expect_values()
 })
+
+test_that("{shinytest2} recording: covid_viz_test_1", {
+  app <- AppDriver$new(name = "covid_viz_test_1", height = 944, width = 1619)
+  app$set_inputs(popdenslider = c(0.137, 1000))
+  app$expect_values()
+})
